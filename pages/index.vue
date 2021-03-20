@@ -2,9 +2,9 @@
   <div class="container">
     <div>
       <h1 class="title">
-        Wybierz ilość osób, które będą odbierać uroczystość Pamiątki
+        Zaznacz ilość osób, które będą odbierać uroczystość Pamiątki:
       </h1>
-      <div class="links">
+      <div>
         <button
           @click="setUsersNumber(1)"
           class="button--grey"
@@ -74,21 +74,29 @@
 import Cookies from "js-cookie";
 import firebase from "@/firebase";
 export default {
+  data() {
+    return {
+      userId: null
+    }
+  },
   created() {
-    if (Cookies.get('cookie')) {
+    // set user id
+    this.userId =  Math.floor(Math.random() * 10001);
+
+    // set cookies
+    if (Cookies.get('opened')) {
       this.$router.push('/stream')
     } else {
-      Cookies.set ('cookie', true)
+      Cookies.set ('opened', true)
+      Cookies.set ('id', this.userId)
     }
   },
   methods: {
     setUsersNumber(value) {
-      const id = Math.floor(Math.random() * 10001);
-      firebase.firestore().collection('streamUsers').add({
-        id: id,
+      firebase.firestore().collection('streamUsers').doc(`${this.userId}`).set({
+        id: this.userId,
         number: value
       })
-
       this.$router.push('/stream')
     }
   },
@@ -98,6 +106,7 @@ export default {
 <style>
 .container {
   margin: 0 auto;
+  padding: 40px 40px;
   min-height: 100vh;
   display: flex;
   justify-content: center;
@@ -106,6 +115,8 @@ export default {
 }
 
 .title {
+  margin-bottom: 10px;
+
   font-family: 'Quicksand',
   'Source Sans Pro',
   -apple-system,
@@ -116,8 +127,8 @@ export default {
   Arial,
   sans-serif;
   display: block;
-  font-weight: 300;
-  font-size: 35px;
+  font-weight: 400;
+  font-size: 28px;
   color: #273645;
   letter-spacing: 1px;
 }

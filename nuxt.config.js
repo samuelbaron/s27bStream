@@ -9,7 +9,11 @@ export default {
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: '' }
-    ]
+    ],
+    link: [
+      {rel:"stylesheet", href: "https://vjs.zencdn.net/7.10.2/video-js.css"},
+      {src: "https://vjs.zencdn.net/7.10.2/video.min.js"}
+      ]
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
@@ -17,9 +21,10 @@ export default {
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: ['vue-videojs7.client.js'],
-  //   {src: 'vue-videojs7.client.js', mode: 'client'}
-  // ],
+  // plugins: ['plugins/vue-videojs7.client.js'],
+  // //   {src: 'vue-videojs7.client.js', mode: 'client'}
+  // // ],
+  plugins: [],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
