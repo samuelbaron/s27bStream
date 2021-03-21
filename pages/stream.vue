@@ -5,7 +5,8 @@
         Uroczystość Pamiątki
       </h1>
       <div class="streamWrapper">
-        <div class="stream"></div>
+      <vue-core-video-player></vue-core-video-player>
+      <!--   <div class="stream"></div>-->
       </div>
       <div>
         <h2 class="subtitle">
@@ -80,7 +81,7 @@
 <script>
 import Cookies from "js-cookie";
 import firebase from "@/firebase";
-
+import VueCoreVideoPlayer from 'vue-core-video-player'
 export default {
   data() {
     return {
@@ -142,7 +143,7 @@ export default {
 
 .subtitle {
   margin-top: 30px;
-
+  margin-bottom: 10px;
   font-family: 'Quicksand',
   'Source Sans Pro',
   -apple-system,
@@ -161,12 +162,13 @@ export default {
 
 @media all and (max-width: 500px){
   .streamWrapper {
+    padding: 0;
     margin-top: 15px;
     width: 100%;
     height: 30vh;
     background-color: greenyellow;
-  }
 
+  }
   .stream {
     width: 100%;
     height: 100%;
@@ -175,10 +177,12 @@ export default {
 }
 @media all and (min-width: 501px){
   .streamWrapper {
+    padding: 0;
     margin-top: 15px;
     width: 100%;
     height: 50vh;
     background-color: greenyellow;
+
   }
 
   .stream {
