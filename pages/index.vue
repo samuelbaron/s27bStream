@@ -136,4 +136,20 @@ button {
   margin-top: 22px;
   background-color: white;
 }
+.button--grey {
+  display: inline-block;
+  border-radius: 4px;
+  border: 1px solid #35495e;
+  color: #35495e;
+  text-decoration: none;
+  width: 110px;
+  height: 40px;
+  margin-left: 15px;
+  margin-bottom: 10px;
+}
+
+.button--grey:hover {
+  color: #fff;
+  background-color: #35495e;
+}
 </style>

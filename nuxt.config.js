@@ -1,10 +1,11 @@
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 's27bStream',
+    title: 's27b',
     htmlAttrs: {
       lang: 'pl'
     },
+    script: [],
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -19,12 +20,9 @@ export default {
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
   ],
-
+  ssr: false,
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  // plugins: ['plugins/vue-videojs7.client.js'],
-  // //   {src: 'vue-videojs7.client.js', mode: 'client'}
-  // // ],
-  plugins: [],
+  plugins: ['~/plugins/vue-core-video-player.js'],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -39,5 +37,6 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+    transpile: ['vue-core-video-player']
   }
 }

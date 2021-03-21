@@ -5,7 +5,7 @@
         Uroczystość Pamiątki
       </h1>
       <div class="streamWrapper">
-        <div class="stream"></div>
+         <div class="stream"><vue-core-video-player :core="HLSCore" src="https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8"></vue-core-video-player></div>
       </div>
       <div>
         <h2 class="subtitle">
@@ -80,12 +80,16 @@
 <script>
 import Cookies from "js-cookie";
 import firebase from "@/firebase";
-
+import VueCoreVideoPlayer from 'vue-core-video-player'
+import HLSCore from '@core-player/playcore-hls'
 export default {
+
+
   data() {
     return {
       userId: null,
-      userNumber: null
+      userNumber: null,
+      HLSCore
     }
   },
   created() {
@@ -112,75 +116,236 @@ export default {
 </script>
 
 <style>
-.container {
-  margin: 0 auto;
-  padding: 30px 30px;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-.title {
-  font-family: 'Quicksand',
-  'Source Sans Pro',
-  -apple-system,
-  BlinkMacSystemFont,
-  'Segoe UI',
-  Roboto,
-  'Helvetica Neue',
-  Arial,
-  sans-serif;
-  display: block;
-  font-weight: 400;
-  font-size: 30px;
-  color: #273645;
-  letter-spacing: 1px;
-}
-
-.subtitle {
-  margin-top: 30px;
-
-  font-family: 'Quicksand',
-  'Source Sans Pro',
-  -apple-system,
-  BlinkMacSystemFont,
-  'Segoe UI',
-  Roboto,
-  'Helvetica Neue',
-  Arial,
-  sans-serif;
-  display: block;
-  font-weight: 400;
-  font-size: 20px;
-  color: #000000;
-  letter-spacing: 1px;
-}
 
 @media all and (max-width: 500px){
+  .container {
+    margin: 0 auto;
+    padding: 30px 20px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  .title {
+    margin-top: -30px;
+    font-family: 'Quicksand',
+    'Source Sans Pro',
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Roboto,
+    'Helvetica Neue',
+    Arial,
+    sans-serif;
+    display: block;
+    font-weight: 400;
+    font-size: 20px;
+    color: #273645;
+    letter-spacing: 1px;
+  }
+  .subtitle {
+    margin-top: 50px;
+    margin-bottom: 10px;
+    font-family: 'Quicksand',
+    'Source Sans Pro',
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Roboto,
+    'Helvetica Neue',
+    Arial,
+    sans-serif;
+    display: block;
+    font-weight: 400;
+    font-size: 18px;
+    color: #000000;
+    letter-spacing: 1px;
+  }
+
+  .button--grey {
+    display: inline-block;
+    border-radius: 4px;
+    border: 1px solid #35495e;
+    color: #35495e;
+    text-decoration: none;
+    width: 130px;
+    height: 30px;
+    margin-left: 15px;
+    margin-bottom: 10px;
+  }
+
+  .button--grey:hover {
+    color: #fff;
+    background-color: #35495e;
+  }
+
   .streamWrapper {
+    padding: 0;
     margin-top: 15px;
     width: 100%;
     height: 30vh;
-    background-color: greenyellow;
-  }
 
+  }
   .stream {
     width: 100%;
     height: 100%;
     background-color: black;
   }
 }
-@media all and (min-width: 501px){
-  .streamWrapper {
-    margin-top: 15px;
-    width: 100%;
-    height: 50vh;
-    background-color: greenyellow;
+@media all and (min-width: 501px) and (max-width: 900px){
+  .container {
+    margin: 0 auto;
+    padding: 30px 20px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
   }
 
+  .title {
+    margin-top: -40px;
+    font-family: 'Quicksand',
+    'Source Sans Pro',
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Roboto,
+    'Helvetica Neue',
+    Arial,
+    sans-serif;
+    display: block;
+    font-weight: 400;
+    font-size: 20px;
+    color: #273645;
+    letter-spacing: 1px;
+  }
+  .subtitle {
+    margin-top: 50px;
+    margin-bottom: 10px;
+    font-family: 'Quicksand',
+    'Source Sans Pro',
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Roboto,
+    'Helvetica Neue',
+    Arial,
+    sans-serif;
+    display: block;
+    font-weight: 400;
+    font-size: 18px;
+    color: #000000;
+    letter-spacing: 1px;
+  }
+
+  .button--grey {
+    display: inline-block;
+    border-radius: 4px;
+    border: 1px solid #35495e;
+    color: #35495e;
+    text-decoration: none;
+    width: 130px;
+    height: 30px;
+    margin-left: 15px;
+    margin-bottom: 10px;
+  }
+
+  .button--grey:hover {
+    color: #fff;
+    background-color: #35495e;
+  }
+
+  .streamWrapper {
+    padding: 0;
+    margin-top: 15px;
+    width: 100%;
+    height: 45vh;
+
+  }
+  .stream {
+    width: 100%;
+    height: 100%;
+    background-color: black;
+  }
+}
+@media all and (min-width: 901px){
+  .container {
+    margin: 0 auto;
+    padding: 30px 20px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  .title {
+    margin-top: -70px;
+    font-family: 'Quicksand',
+    'Source Sans Pro',
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Roboto,
+    'Helvetica Neue',
+    Arial,
+    sans-serif;
+    display: block;
+    font-weight: 400;
+    font-size: 20px;
+    color: #273645;
+    letter-spacing: 1px;
+  }
+  .subtitle {
+    margin-top: 50px;
+    margin-bottom: 10px;
+    font-family: 'Quicksand',
+    'Source Sans Pro',
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Roboto,
+    'Helvetica Neue',
+    Arial,
+    sans-serif;
+    display: block;
+    font-weight: 400;
+    font-size: 18px;
+    color: #000000;
+    letter-spacing: 1px;
+  }
+
+  .button--grey {
+    display: inline-block;
+    border-radius: 4px;
+    border: 1px solid #35495e;
+    color: #35495e;
+    text-decoration: none;
+    width: 130px;
+    height: 50px;
+    margin-left: 15px;
+    margin-bottom: 10px;
+  }
+
+  .button--grey:hover {
+    color: #fff;
+    background-color: #35495e;
+  }
+
+  .streamWrapper {
+    padding: 0;
+    margin-top: 15px;
+    margin-left: 15%;
+    width: 70%;
+    height: 60vh;
+
+  }
   .stream {
     width: 100%;
     height: 100%;
