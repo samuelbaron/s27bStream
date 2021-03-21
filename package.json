@@ -9,6 +9,7 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
+    "@core-player/playcore-hls": "^0.1.1",
     "core-js": "^3.9.1",
     "firebase": "^8.3.1",
     "hls.js": "^0.14.17",

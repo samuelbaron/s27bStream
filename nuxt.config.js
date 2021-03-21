@@ -1,7 +1,7 @@
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 's27bStream',
+    title: 's27b',
     htmlAttrs: {
       lang: 'pl'
     },
@@ -20,7 +20,7 @@ export default {
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
   ],
-
+  ssr: false,
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: ['~/plugins/vue-core-video-player.js'],
 
