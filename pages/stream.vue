@@ -5,7 +5,7 @@
         Uroczystość Pamiątki
       </h1>
       <div class="streamWrapper">
-         <div class="stream"><vue-core-video-player :core="HLSCore" src="https://s27b.pl/hls/test.m3u8"></vue-core-video-player></div>
+         <div class="stream"><vue-core-video-player :core="HLSCore" src="https://djb9qwxsby25m.cloudfront.net/stream/index_1280x720.m3u8"></vue-core-video-player></div>
       </div>
       <div>
         <h2 class="subtitle">
