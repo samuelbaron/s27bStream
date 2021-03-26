@@ -5,7 +5,12 @@
         Uroczystość Pamiątki
       </h1>
       <div class="streamWrapper">
-         <div class="stream"><vue-core-video-player :core="HLSCore" src="https://djb9qwxsby25m.cloudfront.net/stream/index_1280x720.m3u8"></vue-core-video-player></div>
+         <div class="stream">
+           <vue-core-video-player v-if="screenWidth === 432" :core="HLSCore" src="https://d3cqx6tvn5bq08.cloudfront.net/stream/index_768x432.m3u8"></vue-core-video-player>
+           <vue-core-video-player v-if="screenWidth === 540" :core="HLSCore" src="https://d3cqx6tvn5bq08.cloudfront.net/stream/index_960x540.m3u8"></vue-core-video-player>
+           <vue-core-video-player v-if="screenWidth === 720" :core="HLSCore" src="https://d3cqx6tvn5bq08.cloudfront.net/stream/index_1280x720.m3u8"></vue-core-video-player>
+           <vue-core-video-player v-if="screenWidth === 1080" :core="HLSCore" src="https://d3cqx6tvn5bq08.cloudfront.net/stream/index_1920x1080.m3u8"></vue-core-video-player>
+         </div>
       </div>
       <div>
         <h2 class="subtitle">
@@ -15,60 +20,70 @@
         <button
           @click="changeUsersNumber(1)"
           class="button--grey"
+          v-bind:class="{ active: activeNumber1 }"
         >
           1
         </button>
         <button
           @click="changeUsersNumber(2)"
           class="button--grey"
+          v-bind:class="{ active: activeNumber2 }"
         >
           2
         </button>
         <button
           @click="changeUsersNumber(3)"
           class="button--grey"
+          v-bind:class="{ active: activeNumber3 }"
         >
           3
         </button>
         <button
           @click="changeUsersNumber(4)"
           class="button--grey"
+          v-bind:class="{ active: activeNumber4 }"
         >
           4
         </button>
         <button
           @click="changeUsersNumber(5)"
           class="button--grey"
+          v-bind:class="{ active: activeNumber5 }"
         >
           5
         </button>
         <button
           @click="changeUsersNumber(6)"
           class="button--grey"
+          v-bind:class="{ active: activeNumber6 }"
         >
           6
         </button>
         <button
           @click="changeUsersNumber(7)"
           class="button--grey"
+          v-bind:class="{ active: activeNumber7 }"
         >
           7
         </button>
         <button
           @click="changeUsersNumber(8)"
           class="button--grey"
+          v-bind:class="{ active: activeNumber8 }"
         >
           8
         </button>
         <button
           @click="changeUsersNumber(9)"
           class="button--grey"
+          v-bind:class="{ active: activeNumber9 }"
         >
           9
         </button>
         <button
           @click="changeUsersNumber(10)"
           class="button--grey"
+          v-bind:class="{ active: activeNumber10 }"
         >
           10
         </button>
@@ -87,14 +102,67 @@ export default {
 
   data() {
     return {
+      screenWidth: null,
+      streamIsOnline: true,
       userId: null,
       userNumber: null,
-      HLSCore
+      HLSCore,
+      activeNumber1: false,
+      activeNumber2: false,
+      activeNumber3: false,
+      activeNumber4: false,
+      activeNumber5: false,
+      activeNumber6: false,
+      activeNumber7: false,
+      activeNumber8: false,
+      activeNumber9: false,
+      activeNumber10: false,
     }
   },
+
   created() {
+
+    // check resolution and set stream proper video
+    if (window.screen.width < 540) {
+      this.screenWidth = 432
+    } else if (window.screen.width < 720) {
+      this.screenWidth = 540
+    } else if (window.screen.width < 1080) {
+      this.screenWidth = 720
+    } else if (window.screen.width >= 1080 ) {
+      this.screenWidth = 1080
+    }
+
+
     // get user id
     this.userId = Cookies.get('id')
+
+      // get user number
+      firebase.firestore().collection('streamUsers').doc(`${this.userId}`).get().then((doc) => {
+
+        if (doc.data().number === 1) {
+          this.activeNumber1 = true
+        } else if (doc.data().number === 2) {
+          this.activeNumber2 = true
+        } else if (doc.data().number === 3) {
+          this.activeNumber3 = true
+        } else if (doc.data().number === 4) {
+          this.activeNumber4 = true
+        } else if (doc.data().number === 5) {
+          this.activeNumber5 = true
+        } else if (doc.data().number === 6) {
+          this.activeNumber6 = true
+        } else if (doc.data().number === 7) {
+          this.activeNumber7 = true
+        } else if (doc.data().number === 8) {
+          this.activeNumber8 = true
+        } else if (doc.data().number === 9) {
+          this.activeNumber9 = true
+        } else if (doc.data().number === 10) {
+          this.activeNumber10 = true
+        }
+      })
+
   },
   methods: {
     changeUsersNumber(value) {
@@ -105,7 +173,39 @@ export default {
         number: this.userNumber
       })
         .then(() => {
-          console.log("Done")
+          this.activeNumber1 = false
+          this.activeNumber2 = false
+          this.activeNumber3 = false
+          this.activeNumber4 = false
+          this.activeNumber5 = false
+          this.activeNumber6 = false
+          this.activeNumber7 = false
+          this.activeNumber8 = false
+          this.activeNumber9 = false
+          this.activeNumber10 = false
+
+
+          if (this.userNumber === 1) {
+            this.activeNumber1 = true
+          } else if (this.userNumber === 2) {
+            this.activeNumber2 = true
+          } else if (this.userNumber === 3) {
+            this.activeNumber3 = true
+          } else if (this.userNumber === 4) {
+            this.activeNumber4 = true
+          } else if (this.userNumber === 5) {
+            this.activeNumber5 = true
+          } else if (this.userNumber === 6) {
+            this.activeNumber6 = true
+          } else if (this.userNumber === 7) {
+            this.activeNumber7 = true
+          } else if (this.userNumber === 8) {
+            this.activeNumber8 = true
+          } else if (this.userNumber === 9) {
+            this.activeNumber9 = true
+          } else if (this.userNumber === 10) {
+            this.activeNumber10 = true
+          }
         })
         .catch((e) => {
           console.log(e)
@@ -116,7 +216,10 @@ export default {
 </script>
 
 <style>
-
+.active {
+  background-color: #83b4e9;
+  color: white;
+}
 @media all and (max-width: 500px){
   .container {
     margin: 0 auto;

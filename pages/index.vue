@@ -1,6 +1,7 @@
 <template>
   <div class="container">
-    <div>
+
+    <div v-if="streamOffline === false">
       <h1 class="title">
         Zaznacz ilość osób, które będą odbierać uroczystość Pamiątki:
       </h1>
@@ -67,6 +68,13 @@
         </button>
       </div>
     </div>
+
+    <div v-if="streamOffline === true">
+      <h1 class="title">
+        Transmisja uroczystości Pamiątki jest aktualnie wyłączona
+      </h1>
+    </div>
+
   </div>
 </template>
 
@@ -74,22 +82,42 @@
 import Cookies from "js-cookie";
 import firebase from "@/firebase";
 export default {
+
   data() {
     return {
+      streamOffline: false,
       userId: null
     }
   },
-  created() {
-    // set user id
-    this.userId =  Math.floor(Math.random() * 10001);
+  // check if server is online
+  async fetch() {
+    this.stream = await fetch(
+      'https://d3cqx6tvn5bq08.cloudfront.net/stream/index_1920x1080.m3u8'
+    ).then((res) => {
+      this.streamOffline = res.status !== 200;
+    })
+  },
 
-    // set cookies
-    if (Cookies.get('opened')) {
-      this.$router.push('/stream')
-    } else {
-      Cookies.set ('opened', true)
-      Cookies.set ('id', this.userId)
-    }
+  created() {
+    // wait for async function and decide if redirect to stream page or not
+    setTimeout(() => {
+
+      // prepare new user and redirect if stream is online
+      if (this.streamOffline === false) {
+
+        // set user id
+        this.userId =  Math.floor(Math.random() * 10001);
+
+        // set cookies and redirect
+        if (Cookies.get('opened')) {
+          this.$router.push('/stream')
+        } else {
+          Cookies.set ('opened', true)
+          Cookies.set ('id', this.userId)
+        }
+      }
+    }, 1400)
+
   },
   methods: {
     setUsersNumber(value) {
