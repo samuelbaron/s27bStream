@@ -133,6 +133,10 @@ export default {
       this.screenWidth = 1080
     }
 
+    setTimeout(() => {
+      console.log("reload")
+      this.$router.push('/stream')
+    }, 2000)
 
     // get user id
     this.userId = Cookies.get('id')
@@ -162,11 +166,6 @@ export default {
           this.activeNumber10 = true
         }
       })
-
-    setTimeout(() => {
-      console.log("reload")
-      this.$router.push('/stream')
-    }, 2000)
 
   },
   methods: {

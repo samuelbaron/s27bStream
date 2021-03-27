@@ -94,7 +94,13 @@ export default {
     this.stream = await fetch(
       'https://d3cqx6tvn5bq08.cloudfront.net/stream/index_1920x1080.m3u8'
     ).then((res) => {
-      this.streamOffline = res.status !== 200;
+      if (res.status === 200) {
+        this.streamOffline = false
+        console.log("stream jest ok")
+      } else {
+        this.streamOffline = true
+        console.log("stream nie działa")
+      }
     })
   },
 
