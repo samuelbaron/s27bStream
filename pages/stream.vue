@@ -6,10 +6,10 @@
       </h1>
       <div class="streamWrapper">
          <div class="stream">
-           <vue-core-video-player autoplay="false" preload="none" v-if="screenWidth === 432" :core="HLSCore" src="https://d3cqx6tvn5bq08.cloudfront.net/stream/index_960x540.m3u8"></vue-core-video-player>
-           <vue-core-video-player autoplay="false" preload="none" v-if="screenWidth === 540" :core="HLSCore" src="https://d3cqx6tvn5bq08.cloudfront.net/stream/index_960x540.m3u8"></vue-core-video-player>
-           <vue-core-video-player autoplay="false" preload="none" v-if="screenWidth === 720" :core="HLSCore" src="https://d3cqx6tvn5bq08.cloudfront.net/stream/index_1280x720.m3u8"></vue-core-video-player>
-           <vue-core-video-player autoplay="false" preload="none" v-if="screenWidth === 1080" :core="HLSCore" src="https://d3cqx6tvn5bq08.cloudfront.net/stream/index_1920x1080.m3u8"></vue-core-video-player>
+           <vue-core-video-player playsinline autoplay="false" preload="none" v-if="screenWidth === 432" :core="HLSCore" src="https://d3cqx6tvn5bq08.cloudfront.net/stream/index_960x540.m3u8"></vue-core-video-player>
+           <vue-core-video-player playsinline autoplay="false" preload="none" v-if="screenWidth === 540" :core="HLSCore" src="https://d3cqx6tvn5bq08.cloudfront.net/stream/index_960x540.m3u8"></vue-core-video-player>
+           <vue-core-video-player playsinline autoplay="false" preload="none" v-if="screenWidth === 720" :core="HLSCore" src="https://d3cqx6tvn5bq08.cloudfront.net/stream/index_1280x720.m3u8"></vue-core-video-player>
+           <vue-core-video-player playsinline autoplay="false" preload="none" v-if="screenWidth === 1080" :core="HLSCore" src="https://d3cqx6tvn5bq08.cloudfront.net/stream/index_1920x1080.m3u8"></vue-core-video-player>
          </div>
       </div>
       <div>
