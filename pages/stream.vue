@@ -135,7 +135,6 @@ export default {
 
     setTimeout(() => {
       console.log("reload")
-      this.$router.push('/stream')
     }, 2000)
 
     // get user id
